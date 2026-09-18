@@ -16,7 +16,7 @@ public class GestioneRischio {
             return;
         }
         else{
-            elementi[index].riduci();
+            elementi[index+1].riduci();
         }
     }
     
