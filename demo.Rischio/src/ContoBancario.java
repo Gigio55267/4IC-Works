@@ -5,6 +5,14 @@ public class ContoBancario implements Verificabile {
         this.iban = iban;
         this.saldo = saldo;
     }
+    public double versamento(double quantita){
+        saldo += quantita;
+        return saldo;
+    }
+    public double prelievo(double quantita){
+        saldo -= quantita;
+        return saldo;
+    }
     @Override
     public double getValoreRischio() {
         double valore; 

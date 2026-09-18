@@ -5,6 +5,9 @@ public class ImmagineDigitale implements Verificabile{
         this.nomeFile = nomeFile;
         this.megaBite = megaBite;
     }
+    public void blackAndWhite (){
+        megaBite = megaBite - (megaBite/100*20);
+    }
     @Override
     public double getValoreRischio() {
         return megaBite;

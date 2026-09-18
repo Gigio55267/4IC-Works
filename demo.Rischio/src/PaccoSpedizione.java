@@ -1,6 +1,7 @@
 public class PaccoSpedizione implements Verificabile{
     private String codiceTracciamento;
     private double pesoKg;
+    private String[] spedizionePacchi;
     public PaccoSpedizione(String codiceTracciamento, double peseKg) {
         this.codiceTracciamento = codiceTracciamento;
         this.pesoKg = peseKg;
