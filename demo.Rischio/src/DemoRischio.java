@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class DemoRischio {
     public static void main(String[] args) {
         Verificabile inventario[] = {
@@ -28,5 +30,9 @@ public class DemoRischio {
         
         System.out.println("\n--- VALUTAZIONE IMMAGINE ---");
         GestioneRischio.ispeziona(inventario[1]);
+
+        System.out.println("\n--- TENTATIVO SPEDIZIONE PACCHI ---");
+        PaccoSpedizione pacco1 = new PaccoSpedizione("TRK-9982", 12.0);
+        System.out.println(Arrays.toString(pacco1.getSpedizionePacchi()));
     }
 }
