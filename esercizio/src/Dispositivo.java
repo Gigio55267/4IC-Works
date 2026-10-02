@@ -8,4 +8,8 @@ public class Dispositivo {
     public void acceso(){
         System.out.println("dispositivo acceso");
     }
+
+    public double getConsumo() {
+        return consumo;
+    }
 }
