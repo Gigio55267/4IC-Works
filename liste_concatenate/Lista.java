@@ -49,7 +49,7 @@ public class Lista<T> {
         return l;
     }
     public T extract(int i){
-        if (i < 0 || i >= this.lenght()) new IndexOutOfBoundsException();
+        if (i < 0 || i >= this.lenght()) throw new IndexOutOfBoundsException();
         Nodo ext = this.testa;
         for (int j = 0; j < i; j++) {
             ext = ext.getsuccessivo();
