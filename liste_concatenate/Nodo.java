@@ -15,4 +15,16 @@ public class Nodo<T> {
         this.dato = dato;
         this.successivo = successivo;
     }
+
+    public T getDato(){
+        return this.dato;
+    }
+
+    public Nodo getsuccessivo(){
+        return this.successivo;
+    }
+
+    public void setSuccessivo(Nodo successivo){
+        this.successivo=successivo;
+    }
 }
