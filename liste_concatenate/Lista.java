@@ -65,6 +65,9 @@ public class Lista<T> {
     }
 
     public void insert(T dato, int i) {
+        if (this instanceof SourtedList) {
+            throw new MetodoNonUtilizabbileExeption("metodo non uttilizabile per ina lista di valori ordinata");
+        }
         if (i < 0 || i > this.lenght()) {
             throw new IndexOutOfBoundsException();
         }
