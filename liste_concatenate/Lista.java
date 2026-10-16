@@ -118,5 +118,6 @@ public class Lista<T> {
         ints.insert(100, 0);
         ints.remuve(3);
         System.out.println(ints.extract(2));
+        ints.stampaLista();
     }
 }
