@@ -1,8 +1,12 @@
 
 public class Lista<T> {
 
+    public Nodo getTesta() {
+        return testa;
+    }
+
     //stracture wrapping 
-    private class Nodo {
+    protected class Nodo {
 
         private T dato;
         private Nodo successivo;
@@ -33,7 +37,7 @@ public class Lista<T> {
     }
 
     // struttura fonadamentale per creare la lista non che primo elemento F
-    private Nodo testa;
+    protected Nodo testa;
 
     public Lista() {
         this.testa = null;
@@ -84,19 +88,26 @@ public class Lista<T> {
     }
 
     public void remuve(int index) {
-        if (index <0 || index>this.lenght()){
+        if (index < 0 || index > this.lenght()) {
             throw new IndexOutOfBoundsException();
-        }
-        else if (index==0){
+        } else if (index == 0) {
             this.testa = this.testa.getsuccessivo();
-        }
-        else {
+        } else {
             Nodo scan = this.testa;
-            for (int i = 0; i < index-1; i++) {
+            for (int i = 0; i < index - 1; i++) {
                 scan = scan.getsuccessivo();
             }
             scan.setSuccessivo(scan.getsuccessivo().getsuccessivo());
         }
+    }
+
+    public void stampaLista() {
+        Nodo scan = this.testa;
+        for (int i = 0; i < this.lenght(); i++) {
+            System.out.print(scan.getDato()+" | ");
+            scan=scan.getsuccessivo();
+        }
+        System.out.println("");
     }
 
     public static void main(String[] args) {
@@ -106,6 +117,6 @@ public class Lista<T> {
         ints.add(4);
         ints.insert(100, 0);
         ints.remuve(3);
-        System.out.println(ints.extract(0));
+        System.out.println(ints.extract(2));
     }
 }
