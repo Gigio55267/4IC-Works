@@ -1,8 +1,12 @@
 
 public class Lista<T> {
 
+    public Nodo getTesta() {
+        return testa;
+    }
+
     //stracture wrapping 
-    private class Nodo {
+    protected class Nodo {
 
         private T dato;
         private Nodo successivo;
@@ -33,7 +37,7 @@ public class Lista<T> {
     }
 
     // struttura fonadamentale per creare la lista non che primo elemento F
-    private Nodo testa;
+    protected Nodo testa;
 
     public Lista() {
         this.testa = null;
@@ -48,12 +52,75 @@ public class Lista<T> {
         }
         return l;
     }
-    public T extract(int i){
-        if (i < 0 || i >= this.lenght()) throw new IndexOutOfBoundsException();
+
+    public T extract(int i) {
+        if (i < 0 || i >= this.lenght()) {
+            throw new IndexOutOfBoundsException();
+        }
         Nodo ext = this.testa;
         for (int j = 0; j < i; j++) {
             ext = ext.getsuccessivo();
         }
         return ext.getDato();
+    }
+
+    public void insert(T dato, int i) {
+        if (this instanceof SourtedList) {
+            throw new MetodoNonUtilizabbileExeption("metodo non uttilizabile per ina lista di valori ordinata");
+        }
+        if (i < 0 || i > this.lenght()) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (this.testa == null) {
+            this.testa = new Nodo(dato);
+        } else if (i == 0) {
+            Nodo n = new Nodo(dato, this.testa);
+            this.testa = n;
+        } else {
+            Nodo scan = this.testa;
+            for (int j = 0; j < i - 1; j++) {
+                scan = scan.getsuccessivo();
+            }
+            Nodo n = new Nodo(dato, scan.getsuccessivo());
+            scan.setSuccessivo(n);
+        }
+    }
+
+    public void add(T dato) {
+        this.insert(dato, this.lenght());
+    }
+
+    public void remuve(int index) {
+        if (index < 0 || index > this.lenght()) {
+            throw new IndexOutOfBoundsException();
+        } else if (index == 0) {
+            this.testa = this.testa.getsuccessivo();
+        } else {
+            Nodo scan = this.testa;
+            for (int i = 0; i < index - 1; i++) {
+                scan = scan.getsuccessivo();
+            }
+            scan.setSuccessivo(scan.getsuccessivo().getsuccessivo());
+        }
+    }
+
+    public void stampaLista() {
+        Nodo scan = this.testa;
+        for (int i = 0; i < this.lenght(); i++) {
+            System.out.print(scan.getDato()+" | ");
+            scan=scan.getsuccessivo();
+        }
+        System.out.println("");
+    }
+
+    public static void main(String[] args) {
+        Lista<Integer> ints = new Lista<>();
+        ints.add(5);
+        ints.add(230);
+        ints.add(4);
+        ints.insert(100, 0);
+        ints.remuve(3);
+        System.out.println(ints.extract(2));
+        ints.stampaLista();
     }
 }
