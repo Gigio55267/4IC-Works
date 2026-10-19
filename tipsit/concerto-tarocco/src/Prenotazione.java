@@ -15,7 +15,7 @@ public class Prenotazione {
         this.prenRiuscite = new AtomicInteger(0);
     }
 
-    public boolean prenota() {
+    public synchronized boolean prenota() {
         this.postiRichiesti.incrementAndGet();
         if (this.getPostiRichiesti() > this.getPosti()) {
             System.out.println("vuoi più biglietti di quelli disponibili");
