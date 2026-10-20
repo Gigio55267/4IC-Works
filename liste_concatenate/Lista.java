@@ -1,11 +1,12 @@
 
-public class Lista<T> {
+import java.util.Iterator;
+
+public class Lista<T> implements Iterable<T> {
 
     public Nodo getTesta() {
         return testa;
     }
 
-    //stracture wrapping 
     protected class Nodo {
 
         private T dato;
@@ -34,9 +35,11 @@ public class Lista<T> {
         public void setSuccessivo(Nodo successivo) {
             this.successivo = successivo;
         }
-    }
 
-    // struttura fonadamentale per creare la lista non che primo elemento F
+        public void setDato(T dato) {
+            this.dato = dato;
+        }
+    }
     protected Nodo testa;
 
     public Lista() {
@@ -65,9 +68,7 @@ public class Lista<T> {
     }
 
     public void insert(T dato, int i) {
-        if (this instanceof SourtedList) {
-            throw new MetodoNonUtilizabbileExeption("metodo non uttilizabile per ina lista di valori ordinata");
-        }
+
         if (i < 0 || i > this.lenght()) {
             throw new IndexOutOfBoundsException();
         }
@@ -107,10 +108,38 @@ public class Lista<T> {
     public void stampaLista() {
         Nodo scan = this.testa;
         for (int i = 0; i < this.lenght(); i++) {
-            System.out.print(scan.getDato()+" | ");
-            scan=scan.getsuccessivo();
+            System.out.print(scan.getDato() + " | ");
+            scan = scan.getsuccessivo();
         }
         System.out.println("");
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'iterator'");
+    }
+
+    protected class Iteratore implements Iterator<T> {
+
+        private Nodo cursore;
+
+        public Iteratore() {
+            cursore = testa;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return cursore.getDato()!=null;
+        }
+
+        @Override
+        public T next() {
+            T e = cursore.getDato();
+            cursore=cursore.getsuccessivo();
+            return e;
+        }
+
     }
 
     public static void main(String[] args) {
