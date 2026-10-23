@@ -106,18 +106,18 @@ public class Lista<T> implements Iterable<T> {
     }
 
     public void stampaLista() {
-        Nodo scan = this.testa;
-        for (int i = 0; i < this.lenght(); i++) {
-            System.out.print(scan.getDato() + " | ");
-            scan = scan.getsuccessivo();
-        }
-        System.out.println("");
+        this.forEach(s -> System.out.print(s+ "|"));
+        //Nodo scan = this.testa;
+        //for (int i = 0; i < this.lenght(); i++) {
+        //    System.out.print(scan.getDato() + " | ");
+        //    scan = scan.getsuccessivo();
+        //}
+        //System.out.println("");
     }
 
     @Override
     public Iterator<T> iterator() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'iterator'");
+        return new Iteratore();
     }
 
     protected class Iteratore implements Iterator<T> {

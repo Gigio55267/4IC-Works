@@ -7,8 +7,13 @@ public class SourtedList<T extends Comparable<T>> extends Lista<T> {
         super();
         this.isSorted = true;
     }
+    @Override 
+    public void insert(T element, int i) {
+        this.isSorted = false;
+        super.insert(element, i);
+    }
 
-    public void insert(T dato) {
+    public void sortedinsert(T dato) {
         if (!this.isSorted) {
             throw new RuntimeException("La lista non è ordinata");
         };
@@ -34,67 +39,72 @@ public class SourtedList<T extends Comparable<T>> extends Lista<T> {
         }
     }
 
-    public void swap(int i1, int i2) {
-        Nodo scan= this.testa;
-        
-        
-        for (int i = 0; i <= i1; i++) {
-            scan=scan.getsuccessivo();
+    public void swap(int pos1, int pos2) {
+        Nodo temp1 = null, temp2 = null, temp3 = this.testa;
+        for (int i = 0; i < pos2; i++) {
+            temp1 = temp2;
+            temp2 = temp3;
+            temp3 = temp3.getsuccessivo();
         }
-        scan.setDato(this.extract(i2));
-        for (int i = 0; i <= i2; i++) {
-            scan=scan.getsuccessivo();
+        if (temp1 == null) {
+            temp2.setSuccessivo(temp3.getsuccessivo());
+            temp3.setSuccessivo(temp2);
+            testa = temp3;
+        } else {
+            temp1.setSuccessivo(temp3);
+            temp2.setSuccessivo(temp3.getsuccessivo());
+            temp3.setSuccessivo(temp2);
         }
-        scan.setDato(this.extract(i1));
-        //Nodo scan = this.testa;
-        //Nodo scan1 = this.testa;
-        //Nodo n1 = null;
-        //Nodo n2 = null;
-        //int l = this.lenght();
-        //for (int i = 0; i < i1; i++) {
-        //    scan = scan.getsuccessivo();
-        //}
-        //for (int i = 0; i < i2; i++) {
-        //    scan1=scan1.getsuccessivo();
-        //}
-        //n1 =scan;
-        //n2 =scan1;
-        //n1.setSuccessivo(scan1.getsuccessivo());
-        //n2.setSuccessivo(scan.getsuccessivo());
-        //n1.getsuccessivo().setSuccessivo(scan.getsuccessivo());
-        //n2.getsuccessivo().setSuccessivo(scan1.getsuccessivo());
     }
+    //Nodo scan = this.testa;
+    //Nodo scan1 = this.testa;
+    //Nodo n1 = null;
+    //Nodo n2 = null;
+    //int l = this.lenght();
+    //for (int i = 0; i < i1; i++) {
+    //    scan = scan.getsuccessivo();
+    //}
+    //for (int i = 0; i < i2; i++) {
+    //    scan1=scan1.getsuccessivo();
+    //}
+    //n1 =scan;
+    //n2 =scan1;
+    //n1.setSuccessivo(scan1.getsuccessivo());
+    //n2.setSuccessivo(scan.getsuccessivo());
+    //n1.getsuccessivo().setSuccessivo(scan.getsuccessivo());
+    //n2.getsuccessivo().setSuccessivo(scan1.getsuccessivo());
 
     public void sort() {
-        Nodo scan = this.testa;
-        int scambiati=0;
-        int daScambiare=0;
-        int l = this.lenght();
-        for (int i = 0; i < l; i++) {
-            for (int i1 = 0; i1 < l; i1++) {
-            if (scan.getDato().compareTo(scan.getsuccessivo().getDato())<0 ) {
-                daScambiare=i1;
-                System.out.println("ciao");
-                scan=scan.getsuccessivo();
-            }
+        if (this.isSorted) {
+            return;
         }
-        System.out.println(scambiati+" "+daScambiare);
-        swap(scambiati, daScambiare);
-        scambiati++;
-        }
-        
+        int length = lenght();
+        boolean swapped;
+        int count = 0;
 
+        do {
+            swapped = false;
+            for (int i = 0; i < length - count - 1; i++) {
+                if (extract(i).compareTo(extract(i + 1)) > 0) {
+                    swap(i, i + 1);
+                    swapped = true;
+                }
+            }
+            count++;
+        } while (swapped);
+        isSorted = true;
     }
 
     public static void main(String[] args) {
         SourtedList<Integer> d = new SourtedList<>();
-        d.insert(3,0);
-        d.insert(1,1);
-        d.insert(5,2);
-        d.insert(2,3);
+        d.insert(3, 0);
+        d.insert(1, 1);
+        d.insert(5, 2);
+        d.insert(2, 3);
         d.sort();
         // d.insert("dd", 2);
         System.out.println(d.extract(1));
         d.stampaLista();
     }
+
 }
