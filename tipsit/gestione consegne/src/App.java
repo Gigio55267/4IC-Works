@@ -30,7 +30,10 @@ public class App {
 
         System.out.println("pacchi iniziali "+ richiesta.getPacchiTotali());
         System.out.println("pacchi assegnati " + richiesta.getPacchiRichiesti());
-        System.out.println();
+        System.out.println("pacchi richiesti "+ richiesta.getPacchiRichiesti());
+        System.out.println("pacchi riusciti "+ richiesta.getPacchiRiuscite());
+        System.out.println("pacchi falliti "+ richiesta.getPacchiFalliti());
+        System.out.println("riuscita "+  ((double)richiesta.getPacchiRiuscite()/(double)richiesta.getPacchiRichiesti())*100+"%");
     }
 
 }
