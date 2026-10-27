@@ -1,3 +1,6 @@
+
+import java.util.Random;
+
 public class Persona implements Comparable<Persona>{
     private Triage t;
     private String nome;
@@ -17,6 +20,11 @@ public class Persona implements Comparable<Persona>{
         this.eta = eta;
         this.andicap = andicap;
         this.incinta = incinta;
+    }
+
+    public Triage assegnaTriage(){
+        Random r = new Random();
+        return (this.eta<=14 || this.andicap || this.incinta || this.eta >=80) ? Triage.Azzuro : (r.nextInt(6)==1)? Triage.Rosso : (r.nextInt(6)==2)? Triage.Arancione : (r.nextInt(6)==4)? Triage.Verde : (r.nextInt(6)==5)? Triage.Bianco : Triage.Azzuro;
     }
 
     @Override
