@@ -1,5 +1,6 @@
 
 import java.util.Iterator;
+import java.util.function.Predicate;
 
 public class Lista<T> implements Iterable<T> {
 
@@ -142,6 +143,13 @@ public class Lista<T> implements Iterable<T> {
 
     }
 
+    public boolean contains ( Predicate<T> p){
+        for (T r: this) {
+            if (p.test(r)) return true;
+        } 
+        return false;
+    }
+
     public static void main(String[] args) {
         Lista<Integer> ints = new Lista<>();
         ints.add(5);
@@ -150,6 +158,7 @@ public class Lista<T> implements Iterable<T> {
         ints.insert(100, 0);
         ints.remuve(3);
         System.out.println(ints.extract(2));
+        ints.contains(el -> el.equals("ll"));
         ints.stampaLista();
     }
 }
