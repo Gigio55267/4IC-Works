@@ -130,7 +130,7 @@ public class Lista<T> implements Iterable<T> {
 
         @Override
         public boolean hasNext() {
-            return cursore.getDato()!=null;
+            return cursore!=null;
         }
 
         @Override
