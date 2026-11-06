@@ -50,7 +50,7 @@ public class Coda<T> implements Iterable<T>{
         this.queue.remove(0);
         return aux;
     }
-    public void doSometings(Consumer<T> c ){
-        this.forEach(e-> c.accept(e));
+    public void doSometings(Consumer<T> h ){
+        this.forEach(e-> h.accept(e));
     }
 }
