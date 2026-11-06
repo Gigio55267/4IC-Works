@@ -155,29 +155,55 @@ public class ListaDouble<T> implements Iterable<T> {
         this.insert(dato, this.lenght());
     }
 
-    public void remuve(int index) {
-        if (index < 0 || index > this.getLenght()) {
-            throw new IndexOutOfBoundsException();
-        } else if (index == 0) {
+     public void remove(int position) {
+        if (position < 0 || position >= this.getLenght()) {
+            throw new IndexOutOfBoundsException("Posizione " + position + " fuori dai limiti");
+        }
+
+        else if (this.getLenght() == 1) {
+            this.testa = null;
+            this.coda = null;
+        }
+
+        else if (this.getLenght() == 2) {
+            if (position == 0) {
+                this.coda.setprecedente(null);
+                this.testa = coda;
+            }
+            else {
+                this.testa.setSuccessivo(null);
+                this.coda = testa;
+            }
+        }
+
+        else if (position == 0) {
             this.testa = this.testa.getsuccessivo();
             this.testa.setprecedente(null);
-        } else if (index < this.getLenght() / 2) {
-            Nodo scan = this.testa;
-            for (int i = 0; i < index - 1; i++) {
-                scan.getsuccessivo();
-            }
-            scan.getsuccessivo().setSuccessivo(scan.getsuccessivo().getsuccessivo());
-        } else if (index > this.getLenght() / 2) {
-            Nodo scan = this.coda;
-            for (int i = this.getLenght() - 1; i > index + 1; i--) {
-                scan.getprecedente();
-            }
-            scan.getprecedente().setDato(scan.getprecedente().getprecedente().getDato());
         }
-        {
+        
+        else if (position == this.getLenght() - 1) {
+            this.coda = this.coda.getprecedente();
+            this.coda.setSuccessivo(null);
+        }
 
+        else {
+            Nodo scan;
+            if (position < this.getLenght() / 2) {
+                scan = this.testa;
+                for (int i = 0; i < position; i++) {
+                    scan = scan.getsuccessivo();
+                }
+            }
+            else {
+                scan = this.coda;
+                for (int i = this.getLenght() - 1; position < i; i--) {
+                    scan = scan.getprecedente();
+                }
+            }
+            scan.getprecedente().setSuccessivo(scan.getsuccessivo());
+            scan.getsuccessivo().setprecedente(scan.getprecedente());
         }
-        this.setLenght(this.getLenght() - 1);
+        this.setLenght(this.getLenght()-1);
     }
 
     public void stampaLista() {
@@ -217,12 +243,11 @@ public class ListaDouble<T> implements Iterable<T> {
         ints.add(5);
         ints.insert(100, 0);
         ints.add(230);
-
         ints.add(6);
         ints.add(192);
         System.out.println(ints.extract(2));
 
-        ints.remuve(1);
+        ints.remove(1);
 
         ints.stampaLista();
     }
