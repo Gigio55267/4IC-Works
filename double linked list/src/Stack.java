@@ -1,5 +1,6 @@
 
 import java.util.Iterator;
+import java.util.function.Consumer;
 
 public class Stack<T> implements Iterable<T> {
 
@@ -7,19 +8,25 @@ public class Stack<T> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new Iteratore();
+        return new Iteratore(this);
     }
 
     private class Iteratore implements Iterator<T> {
+        
+        private Stack<T> s;
+
+        public Iteratore(Stack s){
+            this.s = s;
+        }
 
         @Override
         public boolean hasNext() {
-            return peek()!=null;
+            return s.peek()!=null;
         }
 
         @Override
         public T next() {
-            return pop();
+            return s.pop();
         }
 
     }
@@ -50,5 +57,9 @@ public class Stack<T> implements Iterable<T> {
             this.stack.remove(0);
         }
         return aux;
+    }
+
+    public void doSometings(Consumer<T> c ){
+        this.forEach(e-> c.accept(e));
     }
 }
