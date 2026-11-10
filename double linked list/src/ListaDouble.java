@@ -151,8 +151,8 @@ public class ListaDouble<T> implements Iterable<T> {
         this.setLenght(this.getLenght() + 1);
     }
 
-    public void add(T dato) {
-        this.insert(dato, this.lenght());
+    public void add(T element) {
+        this.insert(element, this.lenght());
     }
 
      public void remove(int position) {

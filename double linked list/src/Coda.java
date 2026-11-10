@@ -3,7 +3,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
-public class Coda<T> implements Iterable<T>{
+public class Coda<T> implements Iterable<T> {
+
     private final ListaDouble<T> queue;
 
     @Override
@@ -11,13 +12,14 @@ public class Coda<T> implements Iterable<T>{
         return new Iteratore(this);
     }
 
-    private class Iteratore implements Iterator<T>{
+    private class Iteratore implements Iterator<T> {
 
         private Coda<T> c;
 
-        public Iteratore(Coda c){
+        public Iteratore(Coda c) {
             this.c = c;
         }
+
         @Override
         public boolean hasNext() {
             return !c.isempty();
@@ -27,7 +29,7 @@ public class Coda<T> implements Iterable<T>{
         public T next() {
             return c.dequeque();
         }
-        
+
     }
 
     public Coda() {
@@ -50,7 +52,8 @@ public class Coda<T> implements Iterable<T>{
         this.queue.remove(0);
         return aux;
     }
-    public void doSometings(Consumer<T> h ){
-        this.forEach(e-> h.accept(e));
+
+    public void doSometings(Consumer<T> h) {
+        this.forEach(e -> h.accept(e));
     }
 }
