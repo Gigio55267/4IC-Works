@@ -1,27 +1,17 @@
-
 import java.util.Iterator;
-import java.util.function.Consumer;
 
 public class Stack<T> implements Iterable<T> {
-
-    private final ListaDouble<T> stack;
-
-    @Override
-    public Iterator<T> iterator() {
-        return new Iteratore(this);
-    }
-
     private class Iteratore implements Iterator<T> {
-        
+
         private Stack<T> s;
 
-        public Iteratore(Stack s){
+        public Iteratore(Stack<T> s) {
             this.s = s;
         }
 
         @Override
         public boolean hasNext() {
-            return s.peek()!=null;
+            return s.peek() != null;
         }
 
         @Override
@@ -31,35 +21,29 @@ public class Stack<T> implements Iterable<T> {
 
     }
 
+    @Override
+    public Iterator<T> iterator() {
+        return new Iteratore(this);
+    }
+
+    private LinkedList<T> stack;
+
     public Stack() {
-        this.stack = new ListaDouble<>();
+        this.stack = new LinkedList<>();
     }
 
     public void push(T element) {
-        this.stack.insert(element, 0);
-    }
-
-    public T peek() {
-        if (this.stack.getLenght() == 0) {
-            return null;
-        } else {
-            return this.stack.extract(0);
-        }
-    }
-
-    public boolean isempty() {
-        return this.stack.getLenght() == 0;
+        stack.insert(element, 0);
     }
 
     public T pop() {
-        T aux = this.peek();
-        if (aux != null) {
-            this.stack.remove(0);
-        }
-        return aux;
+        T temp = this.peek();
+        if (temp != null) stack.remove(temp);
+        return temp;
     }
 
-    public void doSometings(Consumer<T> c ){
-        this.forEach(e-> c.accept(e));
+    public T peek() {
+        return (stack.length() != 0) ? stack.get(0) : null;
     }
+
 }

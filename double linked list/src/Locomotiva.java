@@ -1,9 +1,20 @@
 
-public class Locomotiva extends Vagoni{
-    private String tipoCarburante;
+public class Locomotiva {
+    private final String nome;
 
-    public Locomotiva(int nVagone, String tipocarburante) {
-        super(nVagone);
-        this.tipoCarburante=tipocarburante;
+    public Locomotiva(String nome) {
+        this.nome = nome;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + this.getClass().getSimpleName() + "] Nome: "  + nome;
+    }
+
+    
+    
 }

@@ -1,14 +1,22 @@
 public class Convoglio {
-    ListaDouble< ? super Vagoni> convoglio;
+    private LinkedList<Locomotiva> lista;
 
-    public Convoglio(Locomotiva testa , Locomotiva coda) {
-        convoglio.add(coda);
-        convoglio.add(coda);
-        convoglio.insert(testa, 0);
+    public Convoglio(Locomotiva testa, Locomotiva coda) {
+        this.lista = new LinkedList<>();
+        this.lista.add(testa);
+        this.lista.add(coda);
     }
 
-    public void add(Vagoni e ){
-        if (e.getClass().getName().equals("Locomotiva"))  throw new IllegalArgumentException("gia presente locomotiva di testa e di coda "); 
-        else this.convoglio.insert(e, 1);
+    public void aggiungiVagone(Vagone v) {
+        lista.insert(v, 1);
     }
+
+    public void stampaConvoglio() {
+        lista.printLine();
+    }
+
+    public LinkedList<Locomotiva> getLista() {
+        return lista;
+    }
+
 }
