@@ -2,18 +2,18 @@
 public class App {
 
     public static void main(String[] args) {
-        Dato[] d = new Dato[120];
+        Dato[] d = new Dato[150];
         d[0] = new Dato(null, null);
-        Magazzino richiesta = new Magazzino(d, 120);
+        Magazzino richiesta = new Magazzino(d, 150);
         Operatore persona = new Operatore("persona", richiesta);
 
-        Operatore[] p = new Operatore[50];
-        Thread[] t = new Thread[50];
+        Operatore[] p = new Operatore[30];
+        Thread[] t = new Thread[30];
         for (int i = 0; i < t.length; i++) {
             d[i]=new Dato(null, null);
         }
 
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 30; i++) {
             Operatore per = new Operatore("" + i, richiesta);
             p[i] = per;
             Thread tung = new Thread(per);
