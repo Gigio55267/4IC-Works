@@ -32,6 +32,6 @@ public class Esadecimale {
 
     public static void main(String[] args) {
         Esadecimale es = new Esadecimale();
-        System.out.println(es.converti("F0f"));
+        System.out.println(es.converti("2fa"));
     }
 }

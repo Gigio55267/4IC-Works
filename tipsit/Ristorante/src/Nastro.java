@@ -21,6 +21,7 @@ public class Nastro {
             
         }
     }
+    
 
     public void setPiatto(Piatto[] piatto) {
         this.piatto = piatto;
