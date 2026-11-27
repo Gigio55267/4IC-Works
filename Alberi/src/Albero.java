@@ -25,7 +25,7 @@ public class Albero<T> {
 
     public void stampaAlbero(){ 
         stampaRic(this.radice);
-    }
+    }   
 
     private void stampaRic(NodoAlbero n){
         if (n == null) return;
